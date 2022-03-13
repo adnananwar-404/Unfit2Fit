@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "5441675154",
+    "project_id": "unfit2fit-8e8ee",
+    "storage_bucket": "unfit2fit-8e8ee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:5441675154:android:1e76b2e6f12ae0d9e0ab4b",
+        "android_client_info": {
+          "package_name": "com.unfit2fit.unfit2fit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "5441675154-bjfu7s8lfa4u71cqi2gft4t0bfkckpm2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlg7pWf1B3gWcNoFD6lwFfBHFrEDUCD9c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "5441675154-bjfu7s8lfa4u71cqi2gft4t0bfkckpm2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
