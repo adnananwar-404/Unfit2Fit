@@ -7,25 +7,57 @@
     tools:context=".RegisterActivity">
 
     <EditText
-        android:id="@+id/registerEmail"
-        android:importantForAutofill="no"
+        android:id="@+id/register_full_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="442dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginTop="319dp"
+        android:layout_marginBottom="17dp"
         android:ems="10"
-        android:hint="@string/password_hint"
+        android:hint="@string/register_full_name_hint"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/register_username"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextContrastCheck" />
+
+    <EditText
+        android:id="@+id/register_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="17dp"
+        android:ems="10"
+        android:hint="@string/register_username_hint"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/registerEmail"
+        app:layout_constraintStart_toStartOf="@+id/register_full_name"
+        app:layout_constraintTop_toBottomOf="@+id/register_full_name"
+        tools:ignore="TextContrastCheck" />
+
+    <EditText
+        android:id="@+id/registerEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="17dp"
+        android:ems="10"
+        android:hint="@string/email_hint"
+        android:importantForAutofill="no"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/registerPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/register_username"
+        app:layout_constraintTop_toBottomOf="@+id/register_username"
+        tools:ignore="TextContrastCheck" />
 
     <EditText
         android:id="@+id/registerPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
         android:layout_marginBottom="25dp"
         android:ems="10"
         android:hint="@string/password_hint"
@@ -34,13 +66,14 @@
         android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/registerButton"
         app:layout_constraintStart_toStartOf="@+id/registerEmail"
-        app:layout_constraintTop_toBottomOf="@+id/registerEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/registerEmail"
+        tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/registerButton"
         android:layout_width="210dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="18dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="17dp"
         android:text="@string/register"
         app:layout_constraintBottom_toTopOf="@+id/registerToLogin"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,11 +84,11 @@
         android:id="@+id/registerToLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="19dp"
-        android:layout_marginBottom="59dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="60dp"
         android:text="@string/already_registered"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/registerButton"
+        app:layout_constraintStart_toStartOf="@+id/registerButton"
         app:layout_constraintTop_toBottomOf="@+id/registerButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>
