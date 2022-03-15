@@ -20,7 +20,7 @@ public class GoalsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_goals);
 
         bottomNavigationView = findViewById(R.id.bottom_navigation_bar);
-
+        //
         bottomNavigationView.setSelectedItemId(R.id.goals);
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
