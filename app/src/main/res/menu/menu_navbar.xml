@@ -4,26 +4,26 @@
     <item
         android:id="@+id/goals"
         android:title="Goals"
-        android:icon="@drawable/ic_target"/>
+        android:icon="@drawable/vector_target"/>
 
     <item
         android:id="@+id/measurements"
         android:title="Measurements"
-        android:icon="@drawable/ic_measure"/>
+        android:icon="@drawable/vector_measure"/>
 
     <item
         android:id="@+id/home"
         android:title="Home"
-        android:icon="@drawable/ic_home"/>
+        android:icon="@drawable/vector_home"/>
 
     <item
         android:id="@+id/stats"
         android:title="Stats"
-        android:icon="@drawable/ic_stats"/>
+        android:icon="@drawable/vector_stats"/>
 
     <item
         android:id="@+id/profile"
         android:title="Profile"
-        android:icon="@drawable/ic_profile"/>
+        android:icon="@drawable/vector_profile"/>
 
 </menu>

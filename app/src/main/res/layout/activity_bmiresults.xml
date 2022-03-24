@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BMIResultsActivity">
+
+    <ImageView
+        android:id="@+id/bmiResults_imageView_result"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout_bmi_Results"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/vector_bmi_normal"
+        android:contentDescription="TODO" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout_bmi_Results"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="75dp"
+        android:background="@drawable/background_black"
+        android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/bmiResults_button_Finish"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bmiResults_imageView_result">
+
+        <TextView
+            android:id="@+id/bmiResults_textView_bmi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="22"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:textStyle="bold">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/bmiResults_textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="90dp"
+            android:text="Your BMI Category Is:"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/bmiResults_textView_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="130dp"
+            android:text="Normal"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:textStyle="bold">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/bmiResults_textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="210dp"
+            android:text="Recommended Weight Range:"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/bmiResults_textView_weightRange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="250dp"
+            android:text="Range"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:textStyle="bold">
+
+        </TextView>
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/bmiResults_button_Recalculate"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Recalculate BMI"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout_bmi_Results" />
+
+    <Button
+        android:id="@+id/bmiResults_button_Finish"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="38dp"
+        android:text="Finish"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout_bmi_Results" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

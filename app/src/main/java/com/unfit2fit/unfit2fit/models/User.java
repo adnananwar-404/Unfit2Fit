@@ -1,4 +1,4 @@
-package com.unfit2fit.unfit2fit;
+package com.unfit2fit.unfit2fit.models;
 
 public class User {
 

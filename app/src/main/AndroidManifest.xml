@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Unfit2Fit">
         <activity
+            android:name=".BMIResultsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".BMICalculatorActivity"
+            android:exported="false" />
+        <activity
             android:name=".ProfileActivity"
             android:exported="false" />
         <activity

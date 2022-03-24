@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -14,7 +15,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private Button logout_button;
+    private Button button_logout, button_bmi;
     private FirebaseAuth myAuth;
     private BottomNavigationView bottomNavigationView;
 
@@ -24,7 +25,8 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         myAuth = FirebaseAuth.getInstance();
-        logout_button = findViewById(R.id.logout);
+        button_logout = findViewById(R.id.logout);
+        button_bmi = findViewById(R.id.home_calculateBMI);
         bottomNavigationView = findViewById(R.id.bottom_navigation_bar);
 
         bottomNavigationView.setSelectedItemId(R.id.home);
@@ -58,7 +60,14 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        logout_button.setOnClickListener(view -> {
+        button_bmi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomeActivity.this, BMICalculatorActivity.class));
+            }
+        });
+
+        button_logout.setOnClickListener(view -> {
             myAuth.signOut();
             startActivity(new Intent(HomeActivity.this, MainActivity.class));
         });

@@ -8,4 +8,13 @@
     <string name="already_registered">Already Registered? Login</string>
     <string name="register_username_hint">USERNAME</string>
     <string name="register_full_name_hint">FULL NAME</string>
+
+    <string-array name="goals">
+        <item>Weight</item>
+        <item>BMI</item>
+        <item>Calorie Intake</item>
+        <item>Calories Burnt</item>
+        <item>Steps</item>
+        <item>Waist</item>
+    </string-array>
 </resources>

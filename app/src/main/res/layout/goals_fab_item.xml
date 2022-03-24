@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:minWidth="300dp"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/goals_fab_item_textView_title1"
+            android:text="Enter You Goal"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:textStyle="bold"
+            android:textSize="20sp">
+        </TextView>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/goals_editText_goal"
+            android:hint="Enter Goal"
+            android:inputType="text"
+            android:maxLength="25"
+            android:layout_margin="5dp"
+            android:textSize="20sp">
+        </EditText>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/goals_editText_current"
+            android:layout_margin="5dp"
+            android:maxLength="10"
+            android:inputType="number"
+            android:hint="Enter Current Value"
+            android:textSize="20sp">
+        </EditText>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/goals_editText_target"
+            android:layout_margin="5dp"
+            android:maxLength="10"
+            android:hint="Enter Target Value"
+            android:inputType="number"
+            android:textSize="20sp">
+        </EditText>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:id="@+id/goals_button_addGoal"
+            android:text="Add Goal"
+            android:textStyle="bold">
+        </Button>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

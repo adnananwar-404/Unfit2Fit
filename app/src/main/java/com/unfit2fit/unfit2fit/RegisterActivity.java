@@ -20,6 +20,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.unfit2fit.unfit2fit.models.User;
 
 import java.util.Objects;
 
@@ -87,12 +88,12 @@ public class RegisterActivity extends AppCompatActivity {
             editText_password.requestFocus();
         }
         else if(TextUtils.isEmpty(username)){
-            editText_password.setError("Username cannot be empty!");
-            editText_password.requestFocus();
+            editText_Username.setError("Username cannot be empty!");
+            editText_Username.requestFocus();
         }
         else if(TextUtils.isEmpty(full_name)){
-            editText_password.setError("Please enter your name!");
-            editText_password.requestFocus();
+            editText_Full_Name.setError("Please enter your name!");
+            editText_Full_Name.requestFocus();
         }
         else{
             myAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {

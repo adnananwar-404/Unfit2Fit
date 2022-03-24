@@ -3,10 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/User/AndroidStudioProjects/Unfit2Fit/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2703125" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Unfit2Fit/app/src/main/res/drawable/black_background.xml" value="0.2703125" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Unfit2Fit/app/src/main/res/drawable/bmi_male_focus.xml" value="0.2703125" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Unfit2Fit/app/src/main/res/drawable/box.xml" value="0.2703125" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Unfit2Fit/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2703125" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Unfit2Fit/app/src/main/res/drawable/ic_measure.xml" value="0.3828125" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Unfit2Fit/app/src/main/res/drawable/ic_target.xml" value="0.3828125" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Unfit2Fit/app/src/main/res/drawable/plus_minus_background.xml" value="0.2703125" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Unfit2Fit/app/src/main/res/drawable/selector.xml" value="0.3828125" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/Unfit2Fit/app/src/main/res/layout/activity_goals.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Unfit2Fit/app/src/main/res/drawable/vector_add.xml" value="0.2703125" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Unfit2Fit/app/src/main/res/drawable/vector_minus.xml" value="0.2703125" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Unfit2Fit/app/src/main/res/drawable/vector_plus.xml" value="0.2703125" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Unfit2Fit/app/src/main/res/layout/activity_bmicalculator.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Unfit2Fit/app/src/main/res/layout/activity_bmiresults.xml" value="0.23550724637681159" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Unfit2Fit/app/src/main/res/layout/activity_goals.xml" value="0.264" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Unfit2Fit/app/src/main/res/layout/activity_home.xml" value="0.4" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Unfit2Fit/app/src/main/res/layout/activity_login.xml" value="0.4" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Unfit2Fit/app/src/main/res/layout/activity_main.xml" value="0.2884963768115942" />
@@ -14,6 +25,10 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/Unfit2Fit/app/src/main/res/layout/activity_profile.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Unfit2Fit/app/src/main/res/layout/activity_register.xml" value="0.35260416666666666" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Unfit2Fit/app/src/main/res/layout/activity_stats.xml" value="0.35260416666666666" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Unfit2Fit/app/src/main/res/layout/goals_fab_item.xml" value="0.2128623188405797" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Unfit2Fit/app/src/main/res/layout/goals_listView_item.xml" value="0.2210144927536232" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Unfit2Fit/app/src/main/res/layout/goals_list_item.xml" value="0.2210144927536232" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Unfit2Fit/app/src/main/res/layout/goals_listview_item.xml" value="0.4" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Unfit2Fit/app/src/main/res/menu/menu_navbar.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Unfit2Fit/app/src/main/res/menu/menu_navigation_bar.xml" value="0.36666666666666664" />
       </map>
