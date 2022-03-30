@@ -14,23 +14,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/goals_fab_item_textView_title1"
-            android:text="Enter You Goal"
+            android:text="Choose You Goal"
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:textStyle="bold"
             android:textSize="20sp">
         </TextView>
 
-        <EditText
+        <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/goals_editText_goal"
-            android:hint="Enter Goal"
-            android:inputType="text"
-            android:maxLength="25"
-            android:layout_margin="5dp"
-            android:textSize="20sp">
-        </EditText>
+            android:spinnerMode="dialog"
+            android:id="@+id/goals_Spinner"
+            android:padding="20dp"
+            android:entries="@array/goals_DL">
+        </Spinner>
 
         <EditText
             android:layout_width="match_parent"

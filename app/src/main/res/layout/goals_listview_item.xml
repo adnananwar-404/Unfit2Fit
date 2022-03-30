@@ -3,10 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="10dp"
+    app:cardCornerRadius="5dp"
     app:cardElevation="8dp"
     app:cardMaxElevation="5dp"
-    android:layout_margin="15dp">
+    android:layout_margin="15dp"
+    android:padding="5dp">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -113,14 +114,24 @@
 
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/goals_listView_item_Menu"
-            android:src="@drawable/ic_more"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:contentDescription="More" />
+<!--        <ImageView-->
+<!--            android:id="@+id/goals_listView_item_Menu"-->
+<!--            android:src="@drawable/vector_delete"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_margin="10dp"-->
+<!--            android:layout_width="40dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:contentDescription="More" />-->
+
+<!--        <ImageButton-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:src="@drawable/vector_delete"-->
+<!--            android:layout_margin="10dp"-->
+<!--            android:backgroundTint="#ffcccb">-->
+
+<!--        </ImageButton>-->
 
     </LinearLayout>
 

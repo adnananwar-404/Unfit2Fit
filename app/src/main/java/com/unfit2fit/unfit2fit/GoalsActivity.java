@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -12,12 +13,15 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -27,16 +31,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
-import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.SetOptions;
 import com.unfit2fit.unfit2fit.models.Goal;
 import com.unfit2fit.unfit2fit.wrappers.GoalsListWrapper;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public class GoalsActivity extends AppCompatActivity {
@@ -53,7 +53,6 @@ public class GoalsActivity extends AppCompatActivity {
 
     private FirebaseAuth myAuth;
     private FirebaseFirestore myDatabase;
-    ProgressDialog progressDialog;
     private GoalsListWrapper wrapper;
 
 
@@ -78,6 +77,14 @@ public class GoalsActivity extends AppCompatActivity {
         goalAdapter = new GoalsContextAdapter(itemsList,GoalsActivity.this);
 
         listView_goals.setAdapter(goalAdapter);
+
+        listView_goals.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(GoalsActivity.this, "Hold To Delete Goal", Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
 
 
@@ -112,45 +119,98 @@ public class GoalsActivity extends AppCompatActivity {
 
         loadData();
         goalAdapter.notifyDataSetChanged();
-        //Toast.makeText(GoalsActivity.this, itemsList.size(), Toast.LENGTH_SHORT).show();
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                addGoal();
+
+            }
+        });
+
+
+
+        listView_goals.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                int pos = i;
+
                 final Dialog d = new Dialog(GoalsActivity.this);
-                d.setContentView(R.layout.goals_fab_item);
+                d.setContentView(R.layout.goals_listview_item_delete_update);
 
-                final EditText et_current = d.findViewById(R.id.goals_editText_current);
-                final EditText et_target = d.findViewById(R.id.goals_editText_target);
-                final EditText et_goal = d.findViewById(R.id.goals_editText_goal);
-                Button add_goal = d.findViewById(R.id.goals_button_addGoal);
+                Button delete_goal = d.findViewById(R.id.goals_updateDelete_button_delete);
+                Button update_goal = d.findViewById(R.id.goals_updateDelete_button_update);
+                Button cancel = d.findViewById(R.id.goals_updateDelete_button_cancel);
 
-                add_goal.setOnClickListener(new View.OnClickListener() {
+                delete_goal.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
-                        if(isGoalValid(et_goal, et_current, et_target)){
-
-                            String goal = et_goal.getText().toString();
-                            String current = et_current.getText().toString();
-                            String target = et_target.getText().toString();
-                            Goal g = new Goal(goal, current, target);
-
-                            itemsList.add(g);
-                            goalAdapter.notifyDataSetChanged();
-                            addToDataBase();
-
-
-                        }
-                        else{
-                            Toast.makeText(GoalsActivity.this, "Invalid Input", Toast.LENGTH_SHORT).show();
-                        }
+                        itemsList.remove(pos);
+                        //goalAdapter = new GoalsContextAdapter(itemsList,GoalsActivity.this);
+                        goalAdapter.notifyDataSetChanged();
+                        updateDatabase(itemsList);
 
                         d.dismiss();
-
                     }
                 });
+
+                update_goal.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        itemsList.remove(pos);
+                        goalAdapter.notifyDataSetChanged();
+                        updateDatabase(itemsList);
+
+                        final Dialog d_update = new Dialog(GoalsActivity.this);
+                        d_update.setContentView(R.layout.goals_fab_item);
+
+                        Spinner spinner = (Spinner) d_update.findViewById(R.id.goals_Spinner);
+                        final EditText et_current = d_update.findViewById(R.id.goals_editText_current);
+                        final EditText et_target = d_update.findViewById(R.id.goals_editText_target);
+                        Button add_goal = d_update.findViewById(R.id.goals_button_addGoal);
+
+                        add_goal.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+
+                                if(isGoalValid(et_current, et_target)){
+
+                                    String current = et_current.getText().toString();
+                                    String target = et_target.getText().toString();
+                                    String goal = spinner.getSelectedItem().toString();
+                                    Goal g = new Goal(goal, current, target);
+
+                                    itemsList.add(pos,g);
+                                    goalAdapter.notifyDataSetChanged();
+                                    ///addToDataBase();
+                                    updateDatabase(itemsList);
+                                }
+                                else{
+                                    Toast.makeText(GoalsActivity.this, "Invalid Input", Toast.LENGTH_SHORT).show();
+                                }
+
+                                d_update.dismiss();
+                                d.dismiss();
+
+                            }
+                        });
+
+                        d_update.show();
+                    }
+                });
+
+                cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        d.dismiss();
+                    }
+                });
+
                 d.show();
+
+                return true;
             }
         });
     }
@@ -158,7 +218,6 @@ public class GoalsActivity extends AppCompatActivity {
 
     private void loadData()
     {
-        //wrapper = new GoalsListWrapper();
 
         DocumentReference df = myDatabase.collection("goals").document(userID);
 
@@ -198,6 +257,44 @@ public class GoalsActivity extends AppCompatActivity {
     }
 
 
+    private void addGoal()
+    {
+        final Dialog d = new Dialog(GoalsActivity.this);
+        d.setContentView(R.layout.goals_fab_item);
+
+        Spinner spinner = (Spinner) d.findViewById(R.id.goals_Spinner);
+        final EditText et_current = d.findViewById(R.id.goals_editText_current);
+        final EditText et_target = d.findViewById(R.id.goals_editText_target);
+        Button add_goal = d.findViewById(R.id.goals_button_addGoal);
+
+        add_goal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(isGoalValid(et_current, et_target)){
+
+                    String current = et_current.getText().toString();
+                    String target = et_target.getText().toString();
+                    String goal = spinner.getSelectedItem().toString();
+                    Goal g = new Goal(goal, current, target);
+
+                    itemsList.add(g);
+                    goalAdapter.notifyDataSetChanged();
+                    updateDatabase(itemsList);
+
+
+                }
+                else{
+                    Toast.makeText(GoalsActivity.this, "Invalid Input", Toast.LENGTH_SHORT).show();
+                }
+
+                d.dismiss();
+
+            }
+        });
+        d.show();
+    }
+
 
     private void addToDataBase(){
 
@@ -233,20 +330,33 @@ public class GoalsActivity extends AppCompatActivity {
     }
 
 
-    private boolean isGoalValid(EditText goal, EditText current, EditText target){
+    private void updateDatabase(ArrayList<Goal> list)
+    {
+        DocumentReference documentReference = myDatabase.collection("goals").document(userID);
+
+        wrapper = new GoalsListWrapper(list);
+        myDatabase.collection("goals").document(userID).set(wrapper).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Toast.makeText(GoalsActivity.this, "Goal Stored", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(GoalsActivity.this, "Failed to Update", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
+    private boolean isGoalValid(EditText current, EditText target){
 
         boolean isValid = false;
 
-        String s_goal = goal.getText().toString().trim();
         String s_current = current.getText().toString().trim();
         String s_target = target.getText().toString().trim();
 
-        if(TextUtils.isEmpty(s_goal)){
-            goal.setError("Goal cannot be empty!");
-            goal.requestFocus();
-            isValid = false;
-        }
-        else if(TextUtils.isEmpty(s_current)){
+       if(TextUtils.isEmpty(s_current)){
             current.setError("Field cannot be empty!");
             current.requestFocus();
             isValid = false;
@@ -262,5 +372,4 @@ public class GoalsActivity extends AppCompatActivity {
 
         return isValid;
     }
-
 }
