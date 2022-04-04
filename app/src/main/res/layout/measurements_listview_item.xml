@@ -28,7 +28,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/goals_listView_item_title"
+                    android:id="@+id/measurements_listView_item_title"
                     android:text="Measurement:"
                     android:textColor="@color/black"
                     android:textSize="20sp"
@@ -39,7 +39,7 @@
                     android:layout_height="wrap_content"/>
 
                 <TextView
-                    android:id="@+id/goals_listView_item_goal"
+                    android:id="@+id/measurements_listView_item_measurement"
                     android:text="SubTitle"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="17sp"
@@ -58,7 +58,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/goals_listView_item_title2"
+                    android:id="@+id/measurements_listView_item_title2"
                     android:text="Current Value:"
                     android:textColor="@color/black"
                     android:textSize="20sp"
@@ -70,7 +70,7 @@
                     android:layout_height="wrap_content"/>
 
                 <TextView
-                    android:id="@+id/goals_listView_item_currentValue"
+                    android:id="@+id/measurements_listView_item_currentValue"
                     android:text="100"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="17sp"
@@ -83,7 +83,7 @@
                     android:layout_height="wrap_content"/>
 
                 <TextView
-                    android:id="@+id/goals_listView_item_metric"
+                    android:id="@+id/measurements_listView_item_metric"
                     android:text="kg"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="17sp"
