@@ -1,4 +1,4 @@
-package com.unfit2fit.unfit2fit;
+package com.unfit2fit.unfit2fit.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.unfit2fit.unfit2fit.R;
 import com.unfit2fit.unfit2fit.models.Goal;
 
 import java.util.ArrayList;
