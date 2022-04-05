@@ -295,39 +295,6 @@ public class GoalsActivity extends AppCompatActivity {
     }
 
 
-    private void addToDataBase(){
-
-        DocumentReference documentReference = myDatabase.collection("goals").document(userID);
-
-        documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if(task.isSuccessful())
-                {
-                    DocumentSnapshot documentSnapshot = task.getResult();
-                    if (documentSnapshot !=null)
-                    {
-                        // Add Object
-                        wrapper = new GoalsListWrapper(itemsList);
-                        myDatabase.collection("goals").document(userID).set(wrapper);
-                    }else {
-                        wrapper = new GoalsListWrapper(itemsList);
-
-                        documentReference.set(wrapper).addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void unused) {
-                                Toast.makeText(GoalsActivity.this, "Goal Stored", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                    }
-                }
-                else{
-                    Toast.makeText(GoalsActivity.this, "Goal Error: " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
-
 
     private void updateDatabase(ArrayList<Goal> list)
     {

@@ -7,18 +7,23 @@ import java.util.ArrayList;
 
 public class MeasurementsListWrapper {
 
-    private ArrayList<Measurement> weightList;
-    private ArrayList<Measurement> waistList;
-    private ArrayList<Measurement> stepsList;
-    private ArrayList<Measurement> chestList;
-    private ArrayList<Measurement> calorieIntakeList;
+    private ArrayList<Measurement> weightList, waistList, stepsList, chestList, calorieIntakeList, listView_items;
 
-    public MeasurementsListWrapper(ArrayList<Measurement> weightList, ArrayList<Measurement> waistList, ArrayList<Measurement> stepsList, ArrayList<Measurement> chestList, ArrayList<Measurement> calorieIntakeList) {
+    public MeasurementsListWrapper(ArrayList<Measurement> weightList, ArrayList<Measurement> waistList, ArrayList<Measurement> stepsList, ArrayList<Measurement> chestList, ArrayList<Measurement> calorieIntakeList, ArrayList<Measurement> listView_items) {
         this.weightList = weightList;
         this.waistList = waistList;
         this.stepsList = stepsList;
         this.chestList = chestList;
         this.calorieIntakeList = calorieIntakeList;
+        this.listView_items = listView_items;
+    }
+
+    public ArrayList<Measurement> getListView_items() {
+        return listView_items;
+    }
+
+    public void setListView_items(ArrayList<Measurement> listView_items) {
+        this.listView_items = listView_items;
     }
 
     public MeasurementsListWrapper() {

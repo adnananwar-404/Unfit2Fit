@@ -16,7 +16,7 @@
         <ListView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/goals_listView"
+            android:id="@+id/measurements_listView"
             android:divider="@android:color/transparent"
             android:dividerHeight="10dp">
 
@@ -27,7 +27,7 @@
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/goals_floatingActionButton"
+            android:id="@+id/measurements_floatingActionButton"
             android:layout_alignParentEnd="true"
             android:src="@drawable/vector_add"
             android:backgroundTint="@color/purple_500"
