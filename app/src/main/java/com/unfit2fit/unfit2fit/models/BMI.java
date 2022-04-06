@@ -14,6 +14,8 @@ public class BMI {
         this.weight_range = weight_range;
     }
 
+    public BMI(){}
+
     public String getBmi() {
         return bmi;
     }
