@@ -43,6 +43,8 @@ public class BMIResultsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bmiresults);
 
+        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.gradient_navbar));
+
         myAuth = FirebaseAuth.getInstance();
         myDatabase = FirebaseFirestore.getInstance();
 

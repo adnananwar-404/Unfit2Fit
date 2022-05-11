@@ -44,16 +44,18 @@
 
         </TextView>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:id="@+id/measurements_error_button_back"
             android:text="Cancel"
             android:textStyle="bold"
+            android:textColor="@color/white"
+            android:background="@drawable/gradient_button"
             android:layout_margin="10dp">
 
-        </Button>
+        </androidx.appcompat.widget.AppCompatButton>
 
     </LinearLayout>
 

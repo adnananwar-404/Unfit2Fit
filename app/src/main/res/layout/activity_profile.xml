@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#212121"
     tools:context=".ProfileActivity">
 
     <RelativeLayout
@@ -19,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            app:itemBackground="@color/purple_500"
+            app:itemBackground="@drawable/gradient_navbar"
             app:itemIconTint="@drawable/selector"
             app:itemTextColor="@drawable/selector"
             app:menu="@menu/menu_navbar" />
@@ -35,6 +36,7 @@
             <com.mikhaellopez.circularimageview.CircularImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
+                app:civ_border_color="#7f22fd"
                 android:id="@+id/profile_image"
                 android:layout_gravity="center"
                 android:src="@drawable/vector_man">
@@ -47,6 +49,7 @@
                 android:id="@+id/profile_image_name"
                 android:textStyle="bold"
                 android:text="User"
+                android:textColor="@color/white"
                 android:padding="10dp"
                 android:gravity="center"
                 android:textSize="30dp">
@@ -84,8 +87,8 @@
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/icon_man">
-
+                    android:src="@drawable/icon_man"
+                    android:backgroundTint="#7f22fd">
                 </ImageView>
 
                 <TextView
@@ -93,7 +96,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:text="Full Name:"
-                    android:textColor="@color/purple_500"
+                    android:textColor="#7f22fd"
                     android:textSize="18dp"
                     android:textStyle="bold">
 
@@ -150,7 +153,8 @@
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/icon_email">
+                    android:src="@drawable/icon_email"
+                    android:backgroundTint="#7f22fd">
 
                 </ImageView>
 
@@ -159,7 +163,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:text="Email:"
-                    android:textColor="@color/purple_500"
+                    android:textColor="#7f22fd"
                     android:textSize="18dp"
                     android:textStyle="bold">
 
@@ -215,7 +219,8 @@
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/icon_email">
+                    android:src="@drawable/icon_age"
+                    android:backgroundTint="#7f22fd">
 
                 </ImageView>
 
@@ -224,7 +229,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:text="Age:"
-                    android:textColor="@color/purple_500"
+                    android:textColor="#7f22fd"
                     android:textSize="18dp"
                     android:textStyle="bold">
 
@@ -283,6 +288,7 @@
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
+                    android:backgroundTint="#7f22fd"
                     android:src="@drawable/icon_gender">
 
                 </ImageView>
@@ -292,7 +298,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:text="Gender:"
-                    android:textColor="@color/purple_500"
+                    android:textColor="#7f22fd"
                     android:textSize="18dp"
                     android:textStyle="bold">
 
@@ -349,7 +355,7 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:src="@drawable/icon_weight"
-                    app:tint="@color/purple_500">
+                    app:tint="#7f22fd">
 
                 </ImageView>
 
@@ -358,7 +364,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:text="Weight:"
-                    android:textColor="@color/purple_500"
+                    android:textColor="#7f22fd"
                     android:textSize="18dp"
                     android:textStyle="bold">
 
@@ -424,7 +430,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:text="Height:"
-                    android:textColor="@color/purple_500"
+                    android:textColor="#7f22fd"
                     android:textSize="18dp"
                     android:textStyle="bold">
 
@@ -482,8 +488,7 @@
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/icon_bmi"
-                    app:tint="@color/purple_500">
+                    android:src="@drawable/icon_bmi">
 
                 </ImageView>
 
@@ -492,7 +497,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:text="BMI:"
-                    android:textColor="@color/purple_500"
+                    android:textColor="#7f22fd"
                     android:textSize="18dp"
                     android:textStyle="bold">
 
@@ -547,8 +552,7 @@
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/icon_category"
-                    app:tint="@color/purple_500">
+                    android:src="@drawable/icon_category">
 
                 </ImageView>
 
@@ -557,7 +561,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:text="BMI Cat:"
-                    android:textColor="@color/purple_500"
+                    android:textColor="#7f22fd"
                     android:textSize="18dp"
                     android:textStyle="bold">
 
@@ -588,6 +592,29 @@
         </LinearLayout>
 
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/wrap_bmiCategory"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:layout_marginTop="15dp">
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/profile_logout"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:text="Logout"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:background="@drawable/background_logout">
+            </androidx.appcompat.widget.AppCompatButton>
+        </LinearLayout>
 
 
     </RelativeLayout>

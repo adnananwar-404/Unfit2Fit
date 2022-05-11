@@ -60,6 +60,8 @@ public class GoalsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goals);
 
+        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.gradient_navbar));
+
         bottomNavigationView = findViewById(R.id.bottom_navigation_bar);
         bottomNavigationView.setSelectedItemId(R.id.goals);
 
@@ -235,9 +237,15 @@ public class GoalsActivity extends AppCompatActivity {
                     tempWrapper  = value.toObject(GoalsListWrapper.class);
 
                     wrapper = tempWrapper;
-                    itemsList = wrapper.getGoalsList();
+                    if(wrapper.getGoalsList() != null)
+                    {
+                        itemsList = wrapper.getGoalsList();
 
-                    loadListView(tempWrapper);
+                        loadListView(tempWrapper);
+                    }
+                    else{
+                        Toast.makeText(GoalsActivity.this, "Add some goals", Toast.LENGTH_SHORT).show();
+                    }
 
                 }
                 else

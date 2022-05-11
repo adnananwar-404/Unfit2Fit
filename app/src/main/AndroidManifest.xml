@@ -3,8 +3,8 @@
     package="com.unfit2fit.unfit2fit">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION"/>
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
 
 
     <application
@@ -16,30 +16,39 @@
         android:theme="@style/Theme.Unfit2Fit">
         <activity
             android:name=".BMIResultsActivity"
+            android:label="BMI Results"
             android:exported="false" />
         <activity
             android:name=".BMICalculatorActivity"
+            android:label="BMI Calculator"
             android:exported="false" />
         <activity
             android:name=".ProfileActivity"
+            android:label="My Profile"
             android:exported="false" />
         <activity
             android:name=".MeasurementActivity"
+            android:label="Measurements"
             android:exported="false" />
         <activity
             android:name=".GoalsActivity"
+            android:label="Goals"
             android:exported="false" />
         <activity
             android:name=".StatsActivity"
+            android:label="Statistics"
             android:exported="false" />
         <activity
             android:name=".HomeActivity"
+            android:label="Dashboard"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"
+            android:label="Registration"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
+            android:label="Login"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
@@ -50,6 +59,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- registering the receiver -->
+        <receiver
+            android:name=".BiHourlyStepsAlarm"
+            android:enabled="true"
+            android:exported="true" />
     </application>
 
 </manifest>

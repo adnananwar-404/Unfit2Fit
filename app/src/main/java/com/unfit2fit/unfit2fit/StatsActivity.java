@@ -79,6 +79,8 @@ public class StatsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stats);
 
+        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.gradient_navbar));
+
         bottomNavigationView = findViewById(R.id.bottom_navigation_bar);
         bottomNavigationView.setSelectedItemId(R.id.stats);
 
@@ -367,6 +369,9 @@ public class StatsActivity extends AppCompatActivity {
         //LineAndPointFormatter series1Format = new LineAndPointFormatter(Color.RED, Color.BLUE, Color.TRANSPARENT, null);
         LineAndPointFormatter currentValuesFormat = new LineAndPointFormatter(Color.RED, Color.BLUE, null, null);
 
+        // add some smoothing to the lines:
+        currentValuesFormat.setInterpolationParams(new CatmullRomInterpolator.Params(10, CatmullRomInterpolator.Type.Centripetal));
+
 
         //change the line width
         Paint paint = currentValuesFormat.getLinePaint();
@@ -384,7 +389,7 @@ public class StatsActivity extends AppCompatActivity {
             }
 
             XYSeries goalValues = new SimpleXYSeries(Arrays.asList(yGoalValues), SimpleXYSeries.ArrayFormat.Y_VALS_ONLY, "Goal");
-            LineAndPointFormatter goalValuesFormat = new LineAndPointFormatter(Color.GREEN, Color.GREEN, null, null);
+            LineAndPointFormatter goalValuesFormat = new LineAndPointFormatter(Color.GREEN, null, null, null);
 
             Paint paint2 = goalValuesFormat.getLinePaint();
             paint2.setStrokeWidth(10);
@@ -408,35 +413,37 @@ public class StatsActivity extends AppCompatActivity {
 
     private void loadGoalsData()
     {
-        if(!goalsListWrapper.getGoalsList().isEmpty())
-        {
-            for(int i=0; i < goalsListWrapper.getGoalsList().size(); i++)
+
+            if(goalsListWrapper.getGoalsList() != null && !goalsListWrapper.getGoalsList().isEmpty())
             {
-                if(goalsListWrapper.getGoalsList().get(i).getGoal().equals("Weight"))
+                for(int i=0; i < goalsListWrapper.getGoalsList().size(); i++)
                 {
-                    weightStats.setGoal(goalsListWrapper.getGoalsList().get(i).getTarget());
-                }
-                else if(goalsListWrapper.getGoalsList().get(i).getGoal().equals("Calorie Intake"))
-                {
-                    calorieIntakeStats.setGoal(goalsListWrapper.getGoalsList().get(i).getTarget());
-                }
-                else if(goalsListWrapper.getGoalsList().get(i).getGoal().equals("Steps"))
-                {
-                    stepsStats.setGoal(goalsListWrapper.getGoalsList().get(i).getTarget());
-                }
-                else if(goalsListWrapper.getGoalsList().get(i).getGoal().equals("Waist"))
-                {
-                    waistStats.setGoal(goalsListWrapper.getGoalsList().get(i).getTarget());
-                }
-                else if(goalsListWrapper.getGoalsList().get(i).getGoal().equals("Chest"))
-                {
-                    chestStats.setGoal(goalsListWrapper.getGoalsList().get(i).getTarget());
+                    if(goalsListWrapper.getGoalsList().get(i).getGoal().equals("Weight"))
+                    {
+                        weightStats.setGoal(goalsListWrapper.getGoalsList().get(i).getTarget());
+                    }
+                    else if(goalsListWrapper.getGoalsList().get(i).getGoal().equals("Calorie Intake"))
+                    {
+                        calorieIntakeStats.setGoal(goalsListWrapper.getGoalsList().get(i).getTarget());
+                    }
+                    else if(goalsListWrapper.getGoalsList().get(i).getGoal().equals("Steps"))
+                    {
+                        stepsStats.setGoal(goalsListWrapper.getGoalsList().get(i).getTarget());
+                    }
+                    else if(goalsListWrapper.getGoalsList().get(i).getGoal().equals("Waist"))
+                    {
+                        waistStats.setGoal(goalsListWrapper.getGoalsList().get(i).getTarget());
+                    }
+                    else if(goalsListWrapper.getGoalsList().get(i).getGoal().equals("Chest"))
+                    {
+                        chestStats.setGoal(goalsListWrapper.getGoalsList().get(i).getTarget());
+                    }
                 }
             }
-        }
-        else{
-            Toast.makeText(StatsActivity.this, "No Goals", Toast.LENGTH_SHORT).show();
-        }
+            else{
+                Toast.makeText(StatsActivity.this, "No Goals", Toast.LENGTH_SHORT).show();
+            }
+
     }
 
 

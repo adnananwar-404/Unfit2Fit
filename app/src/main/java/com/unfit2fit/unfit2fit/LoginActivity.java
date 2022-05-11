@@ -33,6 +33,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.gradient_navbar));
+
         myAuth = FirebaseAuth.getInstance();
         signup_textView = findViewById(R.id.loginToRegister);
         editText_email = findViewById(R.id.loginEmail);

@@ -30,7 +30,7 @@ public class BMICalculatorActivity extends AppCompatActivity {
     private TextView tv_userHeight, tv_userAge;
     private EditText et_weight;
 
-    private Button calculateBMI;
+    private Button calculateBMI, backToHome;
 
     private LinearLayout male_layout, female_layout;
     private RelativeLayout layout_weight_kg, layout_weight_lb;
@@ -50,6 +50,8 @@ public class BMICalculatorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bmicalculator);
 
+        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.gradient_navbar));
+
         seekBar = findViewById(R.id.seekbar_BMI_Height);
         seekBar.setMax(220);
         seekBar.setProgress(170);
@@ -68,6 +70,7 @@ public class BMICalculatorActivity extends AppCompatActivity {
         decrement = findViewById(R.id.decrementAge);
 
         calculateBMI = findViewById(R.id.button_BMI_CalculateBMI);
+        backToHome = findViewById(R.id.button_BMI_home);
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -92,7 +95,7 @@ public class BMICalculatorActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 male_layout.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.bmi_gender_focus));
-                female_layout.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.background_black));
+                female_layout.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.background_black_purple));
                 gender = "Male";
             }
         });
@@ -101,7 +104,7 @@ public class BMICalculatorActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 female_layout.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.bmi_gender_focus));
-                male_layout.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.background_black));
+                male_layout.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.background_black_purple));
                 gender = "Female";
             }
         });
@@ -191,6 +194,13 @@ public class BMICalculatorActivity extends AppCompatActivity {
                     intent.putExtra("age", bmi_age);
                     startActivity(intent);
                 }
+            }
+        });
+
+        backToHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(BMICalculatorActivity.this, HomeActivity.class));
             }
         });
     }

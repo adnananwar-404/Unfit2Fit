@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +38,8 @@ public class ProfileActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     CircularImageView imageView;
 
+    Button button_logout;
+
     String s_fullName, s_email, s_gender, s_height, s_bmi, s_category, s_age, s_weight;
 
     String weight_bmi, weight_measurements;
@@ -56,8 +59,11 @@ public class ProfileActivity extends AppCompatActivity {
         myAuth = FirebaseAuth.getInstance();
         myDatabase = FirebaseFirestore.getInstance();
 
+        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.gradient_navbar));
+
         userID = myAuth.getCurrentUser().getUid();
 
+        button_logout = findViewById(R.id.profile_logout);
         profile_name = findViewById(R.id.profile_image_name);
         fullname = findViewById(R.id.profile_textView_fullName);
         email = findViewById(R.id.profile_textView_email);
@@ -103,6 +109,11 @@ public class ProfileActivity extends AppCompatActivity {
                 }
                 return false;
             }
+        });
+
+        button_logout.setOnClickListener(view -> {
+            myAuth.signOut();
+            startActivity(new Intent(ProfileActivity.this, MainActivity.class));
         });
 
 

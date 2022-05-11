@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#212121"
     xmlns:ap="http://schemas.android.com/apk/res-auto"
     tools:context=".StatsActivity">
 
@@ -19,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            app:itemBackground="@color/purple_500"
+            app:itemBackground="@drawable/gradient_navbar"
             app:itemIconTint="@drawable/selector"
             app:itemTextColor="@drawable/selector"
             app:menu="@menu/menu_navbar" />
@@ -36,17 +37,19 @@
                 android:layout_height="wrap_content"
                 android:spinnerMode="dialog"
                 android:id="@+id/stats_Spinner"
-                android:padding="10dp">
+                android:padding="5dp">
             </Spinner>
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/stats_displayGraph"
                 android:text="Display Stats"
                 android:layout_marginTop="10dp"
-                android:textStyle="bold">
-            </Button>
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:background="@drawable/gradient_button">
+            </androidx.appcompat.widget.AppCompatButton>
 
 
             <com.androidplot.xy.XYPlot
@@ -54,9 +57,10 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/stats_plot"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="80dp"
+                android:layout_marginBottom="90dp"
                 style="@style/APDefacto.Dark"
-                ap:rangeTitle="Range Title"
+                ap:rangeTitle="Y-Axis"
+                ap:domainTitle="X-axis"
                 ap:lineLabelRotationLeft="-90">
 
             </com.androidplot.xy.XYPlot>

@@ -1,21 +1,26 @@
 package com.unfit2fit.unfit2fit;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.ColorDrawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -26,15 +31,32 @@ import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
-import com.squareup.okhttp.internal.DiskLruCache;
+import com.unfit2fit.unfit2fit.models.Steps;
+import com.unfit2fit.unfit2fit.wrappers.GoalsListWrapper;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class HomeActivity extends AppCompatActivity implements SensorEventListener {
 
-    private Button button_logout, button_bmi, reset_steps;
+    private static final String TAG = "HomeActivity";
+
+    private Button button_bmi, reset_steps;
     private FirebaseAuth myAuth;
+    private FirebaseFirestore myDatabase;
     private BottomNavigationView bottomNavigationView;
 
+    Steps steps;
+
+    SharedPreferences sharedP;
 
     private TextView textViewStepCounter;
     private SensorManager sensorManager;
@@ -42,11 +64,9 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
     private boolean isCounterSensorActive;
 
     private CircularProgressBar progressBar;
+    private int stepsRef1, stepsRef2;
 
-    float totalStepCount;
-
-    private float total_steps = 0f;
-    private float previous_total_steps = 0f;
+    private String userID;
 
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -54,6 +74,8 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.gradient_navbar));
 
         if(ContextCompat.checkSelfPermission(this,
                 Manifest.permission.ACTIVITY_RECOGNITION) == PackageManager.PERMISSION_DENIED){
@@ -65,14 +87,24 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         myAuth = FirebaseAuth.getInstance();
-        button_logout = findViewById(R.id.logout);
+        myDatabase = FirebaseFirestore.getInstance();
+        userID = myAuth.getCurrentUser().getUid();
+
         button_bmi = findViewById(R.id.home_calculateBMI);
-        reset_steps = findViewById(R.id.home_button_resetCounter);
-
         progressBar = findViewById(R.id.home_circularProgressBar);
-
         textViewStepCounter = findViewById(R.id.home_textViewStepsTaken);
+
+        String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
+        sharedP = this.getSharedPreferences("steps", Context.MODE_PRIVATE);
+        SharedPreferences.Editor ed;
+
+        bottomNavigationView = findViewById(R.id.bottom_navigation_bar);
+        bottomNavigationView.setSelectedItemId(R.id.home);
+
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+
+        checkNewDay();
+
 
         if(sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER) != null)
         {
@@ -81,12 +113,13 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
             //Toast.makeText(HomeActivity.this, "Hit", Toast.LENGTH_SHORT).show();
         }
         else{
-            textViewStepCounter.setText("Step Counter Sensor Is Not Active");
+            Toast.makeText(HomeActivity.this, "Sensor Not Active", Toast.LENGTH_SHORT).show();
             isCounterSensorActive = false;
         }
 
-        bottomNavigationView = findViewById(R.id.bottom_navigation_bar);
-        bottomNavigationView.setSelectedItemId(R.id.home);
+
+
+
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -123,38 +156,30 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
                 startActivity(new Intent(HomeActivity.this, BMICalculatorActivity.class));
             }
         });
-
-        button_logout.setOnClickListener(view -> {
-            myAuth.signOut();
-            startActivity(new Intent(HomeActivity.this, MainActivity.class));
-        });
-
-        reset_steps.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                previous_total_steps = total_steps;
-                textViewStepCounter.setText("0");
-                saveData();
-            }
-        });
-
-        laodData();
-        saveData();
+//
+//        // Set the alarm to start at 3.46 PM
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.setTimeInMillis(System.currentTimeMillis());
+//        calendar.set(Calendar.HOUR_OF_DAY, 23);
+//        calendar.set(Calendar.MINUTE, 58);
+//        calendar.set(Calendar.SECOND, 00);
+//
+//        setAlarm(calendar.getTimeInMillis());
     }
 
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
-        if(sensorEvent.sensor == mStepCounter)
+
+        String currentDate = new SimpleDateFormat("dd-MM-yyy", Locale.getDefault()).format(new Date());
+
+        if(sharedP.contains(currentDate))
         {
-            totalStepCount = (int) sensorEvent.values[0];
-            total_steps = sensorEvent.values[0];
+            int currentSteps = sharedP.getInt(currentDate, 1);
+            currentSteps = currentSteps + 1;
 
-            int currentSteps = (int) (total_steps - previous_total_steps);
-
-
+            sharedP.edit().putInt(currentDate, currentSteps).apply();
             textViewStepCounter.setText(String.valueOf(currentSteps));
-
             progressBar.setProgressWithAnimation((float) currentSteps);
         }
     }
@@ -171,7 +196,6 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
         if(sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER) != null)
         {
             sensorManager.registerListener(this, mStepCounter, sensorManager.SENSOR_DELAY_FASTEST);
-            //Toast.makeText(HomeActivity.this, "Hit", Toast.LENGTH_SHORT).show();
         }
         else{
             Toast.makeText(HomeActivity.this, "No Sensor Detected", Toast.LENGTH_SHORT).show();
@@ -185,27 +209,47 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
         if(sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER) != null)
         {
             sensorManager.unregisterListener(this, mStepCounter);
-            Toast.makeText(HomeActivity.this, "Hit", Toast.LENGTH_SHORT).show();
         }
         else{
             Toast.makeText(HomeActivity.this, "No Sensor Detected", Toast.LENGTH_SHORT).show();
         }
     }
+//
+//
+//
+//
+//    private void setAlarm(long timeInMillis)
+//    {
+//        AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+//        Intent intent = new Intent(HomeActivity.this, BiHourlyStepsAlarm.class);
+//
+//        String stepsTaken = textViewStepCounter.getText().toString().trim();
+//        intent.putExtra("steps", stepsTaken);
+//        //Toast.makeText(HomeActivity.this, String.valueOf(steps.getDailyBiHourlySteps().size()), Toast.LENGTH_SHORT).show();
+//
+//
+//        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+//        am.setRepeating(AlarmManager.RTC, timeInMillis, AlarmManager.INTERVAL_HOUR, pendingIntent);
+//    }
 
 
-    private void saveData()
+
+    public void checkNewDay()
     {
-        SharedPreferences sharedPreferences = getSharedPreferences("myPref", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putFloat("key1", previous_total_steps);
-        editor.apply();
+
+        String currentDate = new SimpleDateFormat("dd-MM-yyy", Locale.getDefault()).format(new Date());
+
+        if(!sharedP.contains(currentDate))
+        {
+            sharedP.edit().putInt(currentDate, 0).apply();
+        }
+        else if(sharedP.contains(currentDate))
+        {
+            int v = sharedP.getInt(currentDate, 1);
+            textViewStepCounter.setText(String.valueOf(v));
+        }
+
     }
 
-    private void laodData()
-    {
-        SharedPreferences sharedPreferences = getSharedPreferences("myPref", Context.MODE_PRIVATE);
-        float savedNumber = sharedPreferences.getFloat("key1", 0f);
 
-        previous_total_steps = savedNumber;
-    }
 }

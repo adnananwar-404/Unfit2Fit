@@ -63,6 +63,8 @@ public class MeasurementActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_measurement);
 
+        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.gradient_navbar));
+
         bottomNavigationView = findViewById(R.id.bottom_navigation_bar);
         bottomNavigationView.setSelectedItemId(R.id.measurements);
 

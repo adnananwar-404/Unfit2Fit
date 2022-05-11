@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/goals_floatingActionButton"
             android:layout_alignParentEnd="true"
-            android:src="@drawable/vector_add"
+            android:src="@drawable/imported_plus"
             android:backgroundTint="@color/purple_500"
             android:layout_above="@+id/bottom_navigation_bar"
             android:layout_margin="16dp">
@@ -43,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            app:itemBackground="@color/purple_500"
+            app:itemBackground="@drawable/gradient_navbar"
             app:itemIconTint="@drawable/selector"
             app:itemTextColor="@drawable/selector"
             app:menu="@menu/menu_navbar" />
