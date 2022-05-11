@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#212121"
     tools:context=".GoalsActivity">
-
-
 
     <RelativeLayout
         android:id="@+id/goals_relativeLayout_main"
@@ -18,9 +17,13 @@
         <ListView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:id="@+id/goals_listView"
             android:divider="@android:color/transparent"
-            android:dividerHeight="10dp">
+            android:dividerHeight="10dp"
+            android:layout_marginBottom="60dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
 
         </ListView>
 

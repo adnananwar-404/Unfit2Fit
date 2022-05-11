@@ -6,8 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -38,6 +42,7 @@ import com.unfit2fit.unfit2fit.wrappers.MeasurementsListWrapper;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 public class MeasurementActivity extends AppCompatActivity {
 
@@ -526,12 +531,15 @@ public class MeasurementActivity extends AppCompatActivity {
     {
 
         final Dialog d = new Dialog(MeasurementActivity.this);
-        d.setContentView(R.layout.measurement_error_popup);
+        d.setContentView(R.layout.error_popup);
 
         TextView errorMessage = d.findViewById(R.id.measurements_error_msg);
         Button back = d.findViewById(R.id.measurements_error_button_back);
 
-        String msg = measurement + " has already been added. Please Choose another one measurement";
+        measurement.toLowerCase(Locale.ROOT);
+
+        String msg = "The measurement " + measurement + " has already been added. Please Choose another measurement, or update/delete the existing " + measurement
+                + " measurement by long pressing " + measurement;
         errorMessage.setText(msg);
 
         back.setOnClickListener(new View.OnClickListener() {

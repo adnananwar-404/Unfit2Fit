@@ -3,16 +3,19 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="5dp"
-    app:cardElevation="8dp"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="10dp"
     app:cardMaxElevation="5dp"
-    android:layout_margin="5dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="10dp"
     android:padding="5dp">
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/gradient_cardview">
 
         <LinearLayout
             android:layout_weight="1"
@@ -30,7 +33,7 @@
                 <TextView
                     android:id="@+id/goals_listView_item_title"
                     android:text="Goal:"
-                    android:textColor="@color/black"
+                    android:textColor="#d7b7fd"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:layout_weight="0"
@@ -41,7 +44,7 @@
                 <TextView
                     android:id="@+id/goals_listView_item_goal"
                     android:text="SubTitle"
-                    android:textColor="@android:color/darker_gray"
+                    android:textColor="@android:color/white"
                     android:textSize="17sp"
                     android:textStyle="bold"
                     android:layout_margin="6dp"
@@ -60,7 +63,7 @@
                 <TextView
                     android:id="@+id/goals_listView_item_title2"
                     android:text="Current Value:"
-                    android:textColor="@color/black"
+                    android:textColor="#d7b7fd"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:layout_weight="0"
@@ -71,7 +74,7 @@
                 <TextView
                     android:id="@+id/goals_listView_item_currentValue"
                     android:text="SubTitle"
-                    android:textColor="@android:color/darker_gray"
+                    android:textColor="@android:color/white"
                     android:textSize="17sp"
                     android:textStyle="bold"
                     android:layout_margin="6dp"
@@ -90,7 +93,7 @@
                 <TextView
                     android:id="@+id/goals_listView_item_title3"
                     android:text="Target Value:"
-                    android:textColor="@color/black"
+                    android:textColor="#d7b7fd"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:layout_margin="6dp"
@@ -101,7 +104,7 @@
                 <TextView
                     android:id="@+id/goals_listView_item_targetValue"
                     android:text="SubTitle"
-                    android:textColor="@android:color/darker_gray"
+                    android:textColor="@android:color/white"
                     android:textSize="17sp"
                     android:textStyle="bold"
                     android:layout_margin="6dp"

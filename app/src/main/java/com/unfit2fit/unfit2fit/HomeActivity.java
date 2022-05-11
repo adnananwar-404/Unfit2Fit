@@ -41,9 +41,11 @@ import com.unfit2fit.unfit2fit.models.Steps;
 import com.unfit2fit.unfit2fit.wrappers.GoalsListWrapper;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Random;
 
 public class HomeActivity extends AppCompatActivity implements SensorEventListener {
 
@@ -58,12 +60,13 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
 
     SharedPreferences sharedP;
 
-    private TextView textViewStepCounter;
+    private TextView textViewStepCounter, textViewQuote;
     private SensorManager sensorManager;
     private Sensor mStepCounter;
     private boolean isCounterSensorActive;
 
     private CircularProgressBar progressBar;
+    private ArrayList<String> quotes;
     private int stepsRef1, stepsRef2;
 
     private String userID;
@@ -76,6 +79,11 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
         setContentView(R.layout.activity_home);
 
         getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.gradient_navbar));
+
+        textViewQuote = findViewById(R.id.home_textView_quote);
+
+        loadRandomQuote();
+
 
         if(ContextCompat.checkSelfPermission(this,
                 Manifest.permission.ACTIVITY_RECOGNITION) == PackageManager.PERMISSION_DENIED){
@@ -249,6 +257,31 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
             textViewStepCounter.setText(String.valueOf(v));
         }
 
+    }
+
+
+    private String chooseRandomQuote()
+    {
+        Random rand =  new Random();
+        int randomIndex = rand.nextInt(quotes.size());
+
+        String qoute = quotes.get(randomIndex);
+
+        return qoute;
+    }
+
+
+    public void loadRandomQuote()
+    {
+        quotes = new ArrayList<>();
+//        quotes.add("\" It Does Not Matter How Slowly You Go, As Long As You Do Not Stop \"");
+//        quotes.add("\" Don't Stop When You're Tired, Stop When You're Done \"");
+        quotes.add("\" Master Your Mindset \nAnd You'll Master Your Body \"");
+        //quotes.add("\" The Pain You Feel Today Will Be The Strength You Feel Tomorrow \"");
+
+        String randomQuote = chooseRandomQuote();
+
+        textViewQuote.setText(randomQuote);
     }
 
 
